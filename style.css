@@ -1,0 +1,714 @@
+/* =========================================================
+   ESTACIÓN FRITOS - Hoja de estilos
+   Landing Page - Evaluación del Segundo Momento
+   Tecnologías: HTML5, CSS3 y Flexbox (sin Grid ni JavaScript)
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   1. VARIABLES (colores y tipografías)
+   Si quieres cambiar un color de toda la página,
+   solo cambia su valor aquí.
+   --------------------------------------------------------- */
+:root {
+  --color-principal: #D62B1F;          /* Rojo */
+  --color-principal-oscuro: #A61E12;   /* Rojo oscuro (títulos y hover) */
+  --color-secundario: #F2871A;         /* Anaranjado */
+  --color-complementario: #FFC933;     /* Amarillo */
+  --color-fondo: #FFFFFF;              /* Blanco */
+  --color-fondo-suave: #FFF6E6;        /* Crema muy claro para alternar secciones */
+  --color-texto: #2B1810;              /* Café muy oscuro (más suave que el negro) */
+  --color-borde: #F0DFC4;              /* Color de bordes suaves */
+
+  /* Tipografía para títulos: Berlin Sans FB.
+     Si el computador no la tiene, usa las siguientes de la lista. */
+  --fuente-titulos: "Berlin Sans FB", "Arial Rounded MT Bold", Arial, sans-serif;
+  /* Tipografía para textos */
+  --fuente-texto: Arial, Helvetica, sans-serif;
+}
+
+
+/* ---------------------------------------------------------
+   2. ESTILOS GENERALES
+   --------------------------------------------------------- */
+
+/* Quita márgenes y rellenos por defecto y hace que el
+   ancho incluya el padding y el borde (modelo de caja) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fuente-texto);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Todos los títulos usan la tipografía de títulos */
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  line-height: 1.2;
+}
+
+/* Las imágenes nunca se salen de su caja */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Caja centrada que limita el ancho del contenido */
+.contenedor {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Espacio vertical de cada sección */
+.seccion {
+  padding: 70px 0;
+}
+
+/* Sección con fondo crema (para alternar colores) */
+.seccion-crema {
+  background-color: var(--color-fondo-suave);
+}
+
+/* Título y texto que van al inicio de cada sección */
+.cabecera-seccion {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.titulo-seccion {
+  display: inline-block;
+  font-size: 2.2rem;
+  color: var(--color-principal-oscuro);
+  border-bottom: 5px solid var(--color-complementario);
+  padding-bottom: 6px;
+  margin-bottom: 14px;
+}
+
+.texto-seccion {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+
+/* ---------------------------------------------------------
+   3. BOTONES
+   --------------------------------------------------------- */
+.boton {
+  display: inline-block;
+  padding: 12px 26px;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Botón amarillo (para fondos rojos) */
+.boton-amarillo {
+  background-color: var(--color-complementario);
+  color: var(--color-texto);
+}
+
+.boton-amarillo:hover {
+  background-color: var(--color-secundario);
+}
+
+/* Botón rojo (para fondos claros) */
+.boton-rojo {
+  background-color: var(--color-principal);
+  color: #FFFFFF;
+}
+
+.boton-rojo:hover {
+  background-color: var(--color-principal-oscuro);
+}
+
+/* Botón con borde (opcional) */
+.boton-borde {
+  background-color: transparent;
+  color: var(--color-principal);
+  border-color: var(--color-principal);
+}
+
+.boton-borde:hover {
+  background-color: var(--color-principal);
+  color: #FFFFFF;
+}
+
+
+/* ---------------------------------------------------------
+   4. ENCABEZADO (logo + menú)
+   --------------------------------------------------------- */
+.encabezado {
+  background-color: var(--color-fondo);
+  border-bottom: 5px solid var(--color-complementario);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Flexbox: logo a la izquierda y menú a la derecha */
+.encabezado-contenedor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+/* Logo: imagen + nombre, uno al lado del otro */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-imagen {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;              /* Recorta la imagen sin deformarla */
+  border-radius: 50%;             /* Lo vuelve un círculo */
+  border: 3px solid var(--color-complementario);
+}
+
+.logo-texto {
+  font-family: var(--fuente-titulos);
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--color-principal-oscuro);
+}
+
+
+/* ---------------------------------------------------------
+   5. MENÚ DE NAVEGACIÓN
+   --------------------------------------------------------- */
+/* Contenedor del menú */
+.menu {
+  font-size: 1rem;
+}
+
+/* Flexbox: los enlaces del menú quedan en una sola fila */
+.menu-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  list-style: none;
+}
+
+.menu-enlace {
+  display: block;
+  padding: 8px 4px;
+  font-weight: bold;
+  border-bottom: 3px solid transparent;
+}
+
+.menu-enlace:hover {
+  color: var(--color-principal);
+  border-bottom-color: var(--color-secundario);
+}
+
+
+/* ---------------------------------------------------------
+   6. HERO (sección principal, dos columnas)
+   --------------------------------------------------------- */
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 520px;
+  padding: 60px 0;
+  color: #FFFFFF;
+  /* Degradado de rojo oscuro a rojo */
+  background: linear-gradient(135deg, var(--color-principal-oscuro), var(--color-principal));
+}
+
+/* Flexbox: columna izquierda (texto) y derecha (imagen) */
+.hero-contenedor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero-columna-texto {
+  flex: 1;
+}
+
+.hero-columna-imagen {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-etiqueta {
+  display: inline-block;
+  background-color: var(--color-complementario);
+  color: var(--color-texto);
+  font-size: 0.95rem;
+  font-weight: bold;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+
+.hero-titulo {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.hero-eslogan {
+  font-family: var(--fuente-titulos);
+  font-size: 1.7rem;
+  color: var(--color-complementario);
+  margin-bottom: 16px;
+}
+
+.hero-descripcion {
+  max-width: 480px;
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+}
+
+.hero-imagen {
+  max-width: 340px;
+  border: 8px solid #FFFFFF;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ---------------------------------------------------------
+   7. SECCIÓN NOSOTROS (imagen + texto)
+   --------------------------------------------------------- */
+.nosotros-contenedor {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.nosotros-columna-imagen {
+  flex: 1;
+}
+
+.nosotros-columna-texto {
+  flex: 1;
+}
+
+.nosotros-imagen {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.nosotros-subtitulo {
+  font-size: 1.2rem;
+  color: var(--color-principal);
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.lista-diferencias {
+  list-style: disc;
+  padding-left: 22px;
+}
+
+
+/* ---------------------------------------------------------
+   8. SECCIÓN PRODUCTOS (tarjetas)
+   --------------------------------------------------------- */
+/* Flexbox con salto de línea: las tarjetas se acomodan solas */
+.productos-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Cada tarjeta: crece y se encoge, pero mide mínimo 300px */
+.producto {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(166, 30, 18, 0.12);
+  overflow: hidden;               /* Recorta la imagen en las esquinas redondeadas */
+}
+
+.producto:hover {
+  border-color: var(--color-secundario);
+  box-shadow: 0 12px 26px rgba(166, 30, 18, 0.28);
+}
+
+.producto-imagen {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.producto-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+.producto-nombre {
+  font-size: 1.3rem;
+  color: var(--color-texto);
+}
+
+/* La descripción ocupa el espacio libre y empuja el botón hacia abajo */
+.producto-descripcion {
+  flex: 1;
+}
+
+.producto-precio {
+  font-family: var(--fuente-titulos);
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-principal);
+}
+
+
+/* ---------------------------------------------------------
+   9. SECCIÓN SERVICIOS (beneficios)
+   --------------------------------------------------------- */
+.servicios-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.servicio {
+  flex: 1 1 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 22px;
+  text-align: center;
+  background-color: var(--color-fondo-suave);
+  border-top: 6px solid var(--color-secundario);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.servicio:hover {
+  background-color: #FFEBC7;
+}
+
+.servicio-icono {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.servicio-nombre {
+  font-size: 1.3rem;
+  color: var(--color-principal-oscuro);
+}
+
+.servicio-descripcion {
+  flex: 1;
+}
+
+
+/* ---------------------------------------------------------
+   10. TABLA DE COMBOS
+   --------------------------------------------------------- */
+/* Permite deslizar la tabla en pantallas muy pequeñas */
+.tabla-contenedor {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.tabla-combos {
+  width: 100%;
+  border-collapse: collapse;      /* Une los bordes de las celdas */
+  background-color: var(--color-fondo);
+}
+
+.tabla-titulo {
+  padding: 14px;
+  font-weight: bold;
+  text-align: left;
+  color: var(--color-principal-oscuro);
+}
+
+/* Celdas del encabezado de la tabla */
+th {
+  padding: 14px;
+  text-align: left;
+  background-color: var(--color-principal);
+  color: #FFFFFF;
+}
+
+/* Celdas normales de la tabla */
+td {
+  padding: 14px;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+/* Cada fila se resalta al pasar el mouse */
+.fila:hover {
+  background-color: var(--color-fondo-suave);
+}
+
+.celda-precio {
+  font-weight: bold;
+  color: var(--color-principal);
+}
+
+
+/* ---------------------------------------------------------
+   11. GALERÍA
+   --------------------------------------------------------- */
+.galeria-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.galeria-item {
+  flex: 1 1 300px;
+  background-color: var(--color-fondo);
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+  text-align: center;
+}
+
+.galeria-item:hover {
+  box-shadow: 0 12px 26px rgba(166, 30, 18, 0.3);
+}
+
+.galeria-imagen {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.galeria-texto {
+  padding: 10px;
+  font-weight: bold;
+  color: var(--color-principal-oscuro);
+}
+
+
+/* ---------------------------------------------------------
+   12. CONTACTO (información + formulario)
+   --------------------------------------------------------- */
+.contacto-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.contacto-columna-info {
+  flex: 1 1 300px;
+}
+
+.contacto-columna-formulario {
+  flex: 1 1 420px;
+}
+
+.contacto-titulo {
+  font-size: 2.2rem;
+  color: var(--color-principal-oscuro);
+  border-bottom: 5px solid var(--color-complementario);
+  display: inline-block;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+
+.contacto-dato {
+  margin-top: 10px;
+}
+
+/* Flexbox en columna: cada campo queda debajo del anterior */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px;
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Cada campo = etiqueta + caja para escribir */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.etiqueta {
+  font-weight: bold;
+}
+
+.entrada {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--color-borde);
+  border-radius: 8px;
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+}
+
+/* Cuando haces clic dentro del campo cambia el borde */
+.entrada:focus {
+  border-color: var(--color-secundario);
+}
+
+.area-mensaje {
+  min-height: 120px;
+}
+
+
+/* ---------------------------------------------------------
+   13. PIE DE PÁGINA
+   --------------------------------------------------------- */
+.pie-pagina {
+  background-color: var(--color-texto);
+  color: #FFEAD1;
+  padding: 50px 0 20px;
+}
+
+/* Flexbox: varias columnas de información */
+.pie-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.pie-columna {
+  flex: 1 1 240px;
+}
+
+.pie-titulo {
+  font-size: 1.3rem;
+  color: var(--color-complementario);
+  margin-bottom: 12px;
+}
+
+.pie-lista {
+  list-style: none;
+}
+
+.pie-enlace:hover {
+  color: var(--color-secundario);
+}
+
+.pie-derechos {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+
+/* ---------------------------------------------------------
+   14. DISEÑO RESPONSIVE (tablets y celulares)
+   Estas reglas solo se aplican en pantallas de 768px o menos.
+   Las tarjetas, la galería y los servicios se reorganizan solos
+   gracias a flex-wrap, así que aquí ajustamos lo demás.
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Menos espacio entre secciones */
+  .seccion {
+    padding: 50px 0;
+  }
+
+  .titulo-seccion,
+  .contacto-titulo {
+    font-size: 1.8rem;
+  }
+
+  /* Encabezado: logo arriba y menú abajo */
+  .encabezado-contenedor {
+    flex-direction: column;
+  }
+
+  /* Menú vertical */
+  .menu-lista {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Hero: de dos columnas a una sola */
+  .hero {
+    min-height: 0;
+    padding: 40px 0;
+  }
+
+  .hero-contenedor {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .hero-titulo {
+    font-size: 2.2rem;
+  }
+
+  .hero-descripcion {
+    margin: 0 auto 28px;
+  }
+
+  .hero-imagen {
+    max-width: 260px;
+  }
+
+  /* Nosotros: la imagen queda arriba del texto */
+  .nosotros-contenedor {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* Contacto y pie de página en una sola columna */
+  .contacto-contenedor {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .contacto-columna-info,
+  .contacto-columna-formulario {
+    flex: none;
+    width: 100%;
+  }
+
+  .pie-contenedor {
+    flex-direction: column;
+    text-align: center;
+  }
+}
